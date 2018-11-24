@@ -9,6 +9,7 @@ const tempMin = 15;
 const tempMax = 30;
 
 let temp = 20;
+let cpu = 100;
 
 api.use(cors());
 
@@ -17,6 +18,7 @@ api.get('/', (req, res) =>
     res.json(
     {
         temp,
+        cpu
     });
 });
 
@@ -25,8 +27,8 @@ api.use(express.static('../client/dist'));
 api.post('/temp/:temp', (req, res) =>
 {
     temp = req.params.temp;
-    res.json({temp});
     updateBoincUsage();
+    res.json({temp, cpu});
 });
 
 function updateBoincUsage()
@@ -36,7 +38,7 @@ function updateBoincUsage()
         return;
     }
 
-    const cpu = Math.floor((temp - 15) / 15 * 100);
+    cpu = Math.floor((temp - 15) / 15 * 100);
     const begin = "<global_preferences><cpu_usage_limit>"
     const end = "</cpu_usage_limit></global_preferences>"
     const text = begin + cpu.toString() + end;

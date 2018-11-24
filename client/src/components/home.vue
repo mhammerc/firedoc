@@ -25,7 +25,7 @@
 					<h2>Your heater cure diseases</h2>
 				</div>
 				<div class="w-100 text-align-center">
-					<p class="description">Your computer in this demo !</p>
+					<p class="description">For this demo, World Community Grid is ran on your processor to heat up while curing diseases<br><a href="https://www.worldcommunitygrid.org" target="blank">worldcommunitygrid</a></p>
 				</div>
 				<div class="features-list flex jc-space-between">
 					<div class="feature">
@@ -65,7 +65,7 @@
 								<div class="process relative content flex-center-middle">
 									<div class="w-100">
 										<p>Processor used</p>
-										<span>{{proccesor}} %</span>
+										<span>{{cpu}} %</span>
 									</div>
 								</div>
 							</div>
@@ -79,45 +79,44 @@
 							<thead>
 								<tr>
 									<th scope="col"></th>
-									<th scope="col">Komit</th>
-									<th scope="col">Article</th>
-									<th scope="col">Wiki</th>
+									<th scope="col">Total Run Time (Hours)</th>
+									<th scope="col">Points Generated</th>
+									<th scope="col">Results Returned</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
 									<th scope="row">Ebola</th>
-									<td>test</td>
-									<td>test</td>
-									<td>test</td>
+									<td>1</td>
+									<td>3</td>
+									<td>0</td>
 								</tr>
 								<tr>
 									<th scope="row">Childhood Cancer</th>
-									<td>test</td>
-									<td>test</td>
-									<td>test</td>
+									<td>8</td>
+									<td>45</td>
+									<td>2</td>
 								</tr>
 								<tr>
 									<th scope="row">FightAIDS</th>
-									<td>test</td>
-									<td>test</td>
-									<td>test</td>
+									<td>2</td>
+									<td>5</td>
+									<td>1</td>
 								</tr>
 								<tr>
 									<th scope="row">OpenZika</th>
-									<td>test</td>
-									<td>test</td>
-									<td>test</td>
+									<td>12</td>
+									<td>69</td>
+									<td>4</td>
 								</tr>
 								<tr>
 									<th scope="row">Microbiome Immunity</th>
-									<td>test</td>
-									<td>test</td>
-									<td>test</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
 								</tr>
 							</tbody>
 						</table>
-		
 					</div>
 				</div>
 			</div>
@@ -130,7 +129,7 @@
 export default {
 	data () {
 		return {
-			proccesor: 0,
+			cpu: 0,
 			tempActual: 0,
 			tempTarget: 20
 		}
@@ -140,6 +139,7 @@ export default {
 		setInterval(function(){
 			vm.$http.get('http://localhost:8080/').then((response) => {
 				vm.tempActual = response.data.temp;
+				vm.cpu = response.data.cpu;
 			})
 		}, 1000);
 	},
