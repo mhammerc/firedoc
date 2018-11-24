@@ -1,6 +1,7 @@
 build:
 	-docker rmi firedoc
 	make -C client
+	make -C server
 	docker build -t firedoc:latest .
 
 run:
