@@ -1,4 +1,5 @@
 build:
+	mkdir boinc
 	-docker rmi firedoc
 	make -C client
 	make -C server
